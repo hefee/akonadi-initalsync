@@ -7,14 +7,8 @@
 set -e
 set -x
 
-sudo apt -y install kwalletmanager kwalletcli
-sudo apt -y install python-gobject python-dbus
-
-sudo apt -y install qt4-dev-tools xserver-xorg-video-intel
-sudo apt -y install kontact mysql-server
-
 # Use same graphics system as host, since we'll share the X11 socket
-export QT_GRAPHICSSYSTEM=opengl
+export QT_GRAPHICSSYSTEM=native
 export QT_X11_NO_MITSHM=1
 # Give access to graphics card. Alternatively add user to group video
 sudo setfacl -m user:developer:rw /dev/dri/card0
@@ -25,7 +19,8 @@ export KDE_DEBUG=1
 USER=doe
 PASSWORD=Welcome2KolabSystems
 
-sudo /etc/init.d/mysql start
+sudo /usr/sbin/mysqld& >/tmp/mysql.log 2>/tmp/mysql.err
+sleep 2
 
 sudo mysql --defaults-extra-file=/etc/mysql/debian.cnf <<EOF
 CREATE DATABASE $USER;

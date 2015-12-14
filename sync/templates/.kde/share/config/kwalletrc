@@ -1,3 +1,6 @@
+[Auto Allow]
+kdewallet=Kolab of type Kolab Groupware Server,KWallet CLI
+
 [Wallet]
 Close When Idle=false
 Enabled=true

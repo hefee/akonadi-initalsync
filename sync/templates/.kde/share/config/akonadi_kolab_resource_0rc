@@ -12,4 +12,4 @@ IdleRidPath=/INBOX,imap://{primaryEmail}@kolab/
 
 [network]
 ImapServer=kolab
-UserName={fullPrimaryEmail}
+UserName={primaryEmail}

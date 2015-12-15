@@ -72,6 +72,15 @@ def fullSync(name):
 		break
            except dbus.exceptions.DBusException:
 		time.sleep(1)
+
+	if not proxy.isOnline():
+		proxy.setOnline(True)
+		time.sleep(1)
+
+	if not proxy.isOnline() or proxy.statusMessage() == u'Server is not available.':
+	       logger.critical("Kolab server is not available.")
+	       sys.exit(-1)
+
 	proxy.connect_to_signal("status", status, dbus_interface="org.freedesktop.Akonadi.Agent.Status")
 	proxy.synchronize(dbus_interface='org.freedesktop.Akonadi.Resource')
 
